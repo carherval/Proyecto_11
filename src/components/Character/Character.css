@@ -1,0 +1,85 @@
+.personaje {
+  width: 100%;
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+.personaje > img {
+  width: 35%;
+}
+
+.personaje > .info {
+  width: 65%;
+}
+
+.personaje h3 {
+  padding: 1rem;
+  padding-right: 4rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--orange-color);
+  background-color: var(--yellow-color);
+  position: relative;
+  cursor: pointer;
+}
+
+.personaje h3::after {
+  content: '〉';
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+.personaje h3.opened::after {
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.personaje > .info > div {
+  border-left: var(--yellow-border);
+  border-right: var(--yellow-border);
+  border-bottom: var(--yellow-border);
+  padding: 2rem;
+  /* Estilos responsive */
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.personaje .field {
+  width: 100%;
+}
+
+.personaje .label {
+  width: 50%;
+  font-weight: bold;
+  /* Estilos responsive */
+  justify-content: right;
+}
+
+.personaje .value {
+  width: 50%;
+  /* Estilos responsive */
+  justify-content: left;
+}
+
+.personaje .transformations {
+  /* Estilos responsive */
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.personaje .transformations > li {
+  width: 30%;
+}
+
+.personaje .transformations img {
+  width: 100%;
+}
+
+.personaje .transformations img.no-image {
+  width: 35%;
+  background-color: transparent;
+  filter: invert(1);
+}

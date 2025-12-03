@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+:root {
+  --black-color: rgb(50, 50, 50);
+  --white-color: rgb(255, 255, 255);
+  --yellow-color: rgb(253, 216, 30);
+  --orange-color: rgb(217, 66, 20);
+  --yellow-border: 0.25rem solid var(--yellow-color);
+}
+/* Anchuras y tamaño de la fuente */
+
+@media screen and (max-width: 425px) {
+  :root {
+    --passw-width: 50%;
+    --button-width: 40%;
+    --form-width: 60%;
+    --info-width: 80%;
+    font-size: 6px;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  :root {
+    --passw-width: 40%;
+    --button-width: 35%;
+    --form-width: 50%;
+    --info-width: 70%;
+    font-size: 9px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --passw-width: 30%;
+    --button-width: 30%;
+    --form-width: 40%;
+    --info-width: 60%;
+    font-size: 9px;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  :root {
+    --passw-width: 20%;
+    --button-width: 25%;
+    --form-width: 30%;
+    --info-width: 50%;
+    font-size: 9px;
+  }
+}
+
+@media screen and (min-width: 1441px) and (max-width: 2559px) {
+  :root {
+    --passw-width: 20%;
+    --button-width: 25%;
+    --form-width: 30%;
+    --info-width: 50%;
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  :root {
+    --passw-width: 10%;
+    --button-width: 10%;
+    --form-width: 20%;
+    --info-width: 30%;
+    font-size: 9px;
+  }
+}
+
+/* Estilos generales iniciales */
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Delius', sans-serif;
+  font-size: 1.5rem;
+  color: var(--white-color);
+  background-color: var(--black-color);
+}
+
+/* Estilos responsive iniciales */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+/* Estilos generales */
+
+.oculto {
+  display: none;
+}
+
+/* Anchura mínima */
+body {
+  min-width: 426px;
+}
+
+h2 {
+  padding: 2rem;
+  font-size: 2.5rem;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  font-weight: bold;
+  color: var(--yellow-color);
+  text-decoration: none;
+  transition: all 0.35s;
+}
+
+a:hover {
+  color: var(--orange-color);
+}
+
+/* Cuerpo principal de la página */
+
+.contenido {
+  height: calc(100vh - 17.5rem);
+  padding: 2rem 4rem;
+  overflow-y: auto;
+  /* Estilos responsive */
+  justify-content: start;
+  flex-direction: column;
+}
+
+.contenido:has(.menu-home, .error) {
+  /* Estilos responsive */
+  justify-content: center;
+}
+
+.contenido > section {
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+/* Listado de personajes */
+
+.personajes {
+  /* Estilos responsive */
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.personajes > li {
+  width: 22.5%;
+}
+
+.personajes a {
+  width: 100%;
+  border: var(--yellow-border);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.personajes a:hover {
+  color: var(--orange-color);
+  background-color: var(--yellow-color);
+}
+
+/* Página de error */
+
+.error {
+  /* Estilos responsive */
+  flex-direction: column;
+}
+
+.error > p {
+  font-size: 3.5rem;
+  font-weight: bold;
+}

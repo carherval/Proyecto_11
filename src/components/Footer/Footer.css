@@ -1,0 +1,20 @@
+.pie {
+  height: 7.5rem;
+  padding: 2rem;
+  background-color: var(--black-color);
+  /* Estilos responsive */
+  justify-content: space-evenly;
+}
+
+.pie * {
+  background-color: var(--black-color);
+}
+
+.pie > div {
+  width: 50%;
+}
+
+.pie span {
+  font-weight: bold;
+  color: var(--orange-color);
+}

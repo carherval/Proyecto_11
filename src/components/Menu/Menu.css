@@ -1,0 +1,28 @@
+.menu-home {
+  width: 100%;
+  /* Estilos responsive */
+  justify-content: center;
+  flex-direction: column;
+}
+
+.menu-home > a {
+  width: 25%;
+  border: var(--yellow-border);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.menu-home > a:hover {
+  color: var(--orange-color);
+  background-color: var(--yellow-color);
+}
+
+.menu {
+  width: 100%;
+  /* Estilos responsive */
+  justify-content: space-evenly;
+}
+
+.menu > a.active {
+  color: var(--orange-color);
+}
