@@ -11,39 +11,51 @@
 
 @media screen and (max-width: 425px) {
   :root {
-    --passw-width: 50%;
-    --button-width: 40%;
-    --form-width: 60%;
-    --info-width: 80%;
+    --header-img-width: 10%;
+    --menu-home-width: 50%;
+    --menu-width: 100%;
+    --list-width: 100%;
+    --char-img-width: 50%;
+    --char-no-img-width: 20%;
+    --info-width: 85%;
     font-size: 6px;
   }
 }
 
 @media screen and (min-width: 426px) and (max-width: 768px) {
   :root {
-    --passw-width: 40%;
-    --button-width: 35%;
-    --form-width: 50%;
-    --info-width: 70%;
+    --header-img-width: 7.5%;
+    --menu-home-width: 45%;
+    --menu-width: 100%;
+    --list-width: 90%;
+    --char-img-width: 40%;
+    --char-no-img-width: 15%;
+    --info-width: 75%;
     font-size: 9px;
   }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   :root {
-    --passw-width: 30%;
-    --button-width: 30%;
-    --form-width: 40%;
-    --info-width: 60%;
+    --header-img-width: 6.5%;
+    --menu-home-width: 35%;
+    --menu-width: 100%;
+    --list-width: 90%;
+    --char-img-width: 35%;
+    --char-no-img-width: 13.5%;
+    --info-width: 65%;
     font-size: 9px;
   }
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1440px) {
   :root {
-    --passw-width: 20%;
-    --button-width: 25%;
-    --form-width: 30%;
+    --header-img-width: 4.5%;
+    --menu-home-width: 25%;
+    --menu-width: 75%;
+    --list-width: 75%;
+    --char-img-width: 25%;
+    --char-no-img-width: 10%;
     --info-width: 50%;
     font-size: 9px;
   }
@@ -51,9 +63,12 @@
 
 @media screen and (min-width: 1441px) and (max-width: 2559px) {
   :root {
-    --passw-width: 20%;
-    --button-width: 25%;
-    --form-width: 30%;
+    --header-img-width: 4.5%;
+    --menu-home-width: 25%;
+    --menu-width: 75%;
+    --list-width: 75%;
+    --char-img-width: 25%;
+    --char-no-img-width: 10%;
     --info-width: 50%;
     font-size: 12px;
   }
@@ -61,11 +76,14 @@
 
 @media screen and (min-width: 2560px) {
   :root {
-    --passw-width: 10%;
-    --button-width: 10%;
-    --form-width: 20%;
-    --info-width: 30%;
-    font-size: 9px;
+    --header-img-width: 3.5%;
+    --menu-home-width: 20%;
+    --menu-width: 55%;
+    --list-width: 55%;
+    --char-img-width: 15%;
+    --char-no-img-width: 6%;
+    --info-width: 35%;
+    font-size: 12px;
   }
 }
 
@@ -97,6 +115,10 @@
   display: none;
 }
 
+.negrita {
+  font-weight: bold;
+}
+
 /* Anchura mínima */
 body {
   min-width: 426px;
@@ -105,6 +127,30 @@ body {
 h2 {
   padding: 2rem;
   font-size: 2.5rem;
+}
+
+h3 {
+  padding: 1rem;
+  padding-right: 4rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--orange-color);
+  background-color: var(--yellow-color);
+  position: relative;
+  cursor: pointer;
+}
+
+h3::after {
+  content: '〉';
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+h3.opened::after {
+  transform: translateY(-50%) rotate(-90deg);
 }
 
 li {
@@ -138,15 +184,16 @@ a:hover {
   justify-content: center;
 }
 
-.contenido > section {
-  /* Estilos responsive */
-  flex-direction: column;
+.contenido > section:not(.filter) {
+  width: 100%;
 }
 
 /* Listado de personajes */
 
 .personajes {
+  width: var(--list-width);
   /* Estilos responsive */
+  justify-content: space-evenly;
   align-items: end;
   flex-wrap: wrap;
 }
@@ -167,12 +214,19 @@ a:hover {
   background-color: var(--yellow-color);
 }
 
-/* Página de error */
+/* Filtrado de personajes sin resultados */
 
-.error {
-  /* Estilos responsive */
-  flex-direction: column;
+.no-characters,
+.no-characters > div {
+  height: 100%;
 }
+
+.no-characters > div > p {
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+
+/* Página de error */
 
 .error > p {
   font-size: 3.5rem;

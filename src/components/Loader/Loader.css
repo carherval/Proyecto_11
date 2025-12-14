@@ -9,6 +9,12 @@
   pointer-events: all;
 }
 
+@media screen and (max-width: 320px) {
+  #loader {
+    height: 75%;
+  }
+}
+
 .loader {
   /* Estilos responsive */
   justify-content: center;
@@ -17,6 +23,12 @@
 
 .loader > img {
   width: 25%;
+}
+
+@media screen and (max-width: 425px) {
+  .loader > img {
+    width: 15%;
+  }
 }
 
 .loader > p {

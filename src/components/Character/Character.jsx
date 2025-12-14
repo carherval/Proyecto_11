@@ -1,74 +1,78 @@
 import './Character.css'
 
 import { useState } from 'react'
+import {
+  CHARACTER_DATA_FIELD_LABELS,
+  CHARACTER_INFO_SECTIONS,
+  COLLAPSIBLE_OPTIONS,
+  getNotEmptyStr,
+  NO_INFO_STR
+} from '../Fetch'
 
-const NO_INFO_STR = 'Sin información'
-
-const INFO_SECTIONS = {
-  data: 'Datos básicos',
-  descr: 'Descripción',
-  bio: 'Biografía',
-  transformations: 'Transformaciones'
-}
-
-const COLLAPSIBLE_OPTIONS = {
-  open: 'Abrir',
-  close: 'Cerrar'
-}
-
+// Devuelve los datos básicos del personaje: nombre, género, raza y planeta
 const getCharacterData = (character) => (
   <>
     <div className='flex field'>
-      <div className='flex label'>Nombre:</div>
-      <div className='flex value'>{character.name}</div>
+      <div className='flex label'>
+        {CHARACTER_DATA_FIELD_LABELS.name.title}:
+      </div>
+      <div className='flex value'>{getNotEmptyStr(character.name, true)}</div>
     </div>
     <div className='flex field'>
-      <div className='flex label'>Género:</div>
-      <div className='flex value'>{getKeyValue(character.genre)}</div>
+      <div className='flex label'>
+        {CHARACTER_DATA_FIELD_LABELS.genre.title}:
+      </div>
+      <div className='flex value'>{getNotEmptyStr(character.genre)}</div>
     </div>
     <div className='flex field'>
-      <div className='flex label'>Raza:</div>
-      <div className='flex value'>{getKeyValue(character.race)}</div>
+      <div className='flex label'>
+        {CHARACTER_DATA_FIELD_LABELS.race.title}:
+      </div>
+      <div className='flex value'>{getNotEmptyStr(character.race)}</div>
     </div>
     <div className='flex field'>
-      <div className='flex label'>Planeta:</div>
-      <div className='flex value'>{getKeyValue(character.planet)}</div>
+      <div className='flex label'>
+        {CHARACTER_DATA_FIELD_LABELS.planet.title}:
+      </div>
+      <div className='flex value'>{getNotEmptyStr(character.planet)}</div>
     </div>
   </>
 )
 
 const getCharacterDescr = (character) => (
-  <p>{getKeyValue(character.description)}</p>
+  <p>{getNotEmptyStr(character.description)}</p>
 )
 
-const getCharacterBio = (character) => <p>{getKeyValue(character.biography)}</p>
+const getCharacterBio = (character) => (
+  <p>{getNotEmptyStr(character.biography)}</p>
+)
 
 const getCharacterTransformations = (character) =>
-  character.transformations[0].image == null ||
-  character.transformations[0].image === '' ? (
-    <p>{NO_INFO_STR}</p>
-  ) : (
+  character.transformations[0].image != null &&
+  character.transformations[0].image !== '' ? (
     <ul className='flex transformations'>
       {character.transformations.map((transformation) => (
         <li key={transformation.id}>
           <img
             src={transformation.image}
-            alt={getKeyValue(transformation.title)}
-            title={getKeyValue(transformation.title)}
+            alt={getNotEmptyStr(transformation.title)}
+            title={getNotEmptyStr(transformation.title)}
+            // Si la carga de la imagen da error, se carga una imagen genérica
             onError={(event) => {
-              event.currentTarget.src = '/assets/images/silueta.png'
               event.currentTarget.classList.add('no-image')
+              event.currentTarget.src = '/assets/images/silueta.png'
             }}
           />
         </li>
       ))}
     </ul>
+  ) : (
+    <p>{NO_INFO_STR}</p>
   )
 
-const getKeyValue = (keyValue) =>
-  keyValue != null && keyValue.trim() !== '' ? keyValue : NO_INFO_STR
-
+// Componente que muestra la información de un personaje
 const Character = ({ character }) => {
+  // Estado para gestionar los desplegables de las secciones de información del personaje
   const [isInfoSectionOpened, setIsInfoSectionOpened] = useState([
     false,
     false,
@@ -76,22 +80,24 @@ const Character = ({ character }) => {
     false
   ])
 
+  // Devuelve una sección de información del personaje en forma de desplegable
   const getCharacterInfoSection = (sectionIndex, sectionTitle, sectionInfo) => (
     <section className='info'>
       <h3
+        tabIndex={0}
         className={isInfoSectionOpened[sectionIndex] ? 'opened' : undefined}
         title={`${
           !isInfoSectionOpened[sectionIndex]
             ? COLLAPSIBLE_OPTIONS.open
             : COLLAPSIBLE_OPTIONS.close
         } ${sectionTitle}`}
-        onClick={() =>
-          setIsInfoSectionOpened((isInfoSectionOpened) =>
-            isInfoSectionOpened.map((isOpened, index) =>
-              index === sectionIndex ? !isOpened : isOpened
-            )
-          )
-        }
+        onClick={() => setStateIsInfoSectionOpened(sectionIndex)}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault()
+            setStateIsInfoSectionOpened(sectionIndex)
+          }
+        }}
       >
         {sectionTitle}
       </h3>
@@ -103,28 +109,42 @@ const Character = ({ character }) => {
     </section>
   )
 
+  // Sólo se cambia el estado del desplegable que se abre o se cierra
+  const setStateIsInfoSectionOpened = (sectionIndex) =>
+    setIsInfoSectionOpened((isInfoSectionOpened) =>
+      isInfoSectionOpened.map((isOpened, index) =>
+        index === sectionIndex ? !isOpened : isOpened
+      )
+    )
+
   return (
     <article className='flex personaje'>
-      <h2>{character.name}</h2>
-      <img src={character.image} alt={character.name} />
+      <h2>{getNotEmptyStr(character.name, true)}</h2>
+      <img
+        className={
+          character.image.includes('silueta.png') ? 'no-image' : undefined
+        }
+        src={character.image}
+        alt={getNotEmptyStr(character.name, true)}
+      />
       {getCharacterInfoSection(
         0,
-        INFO_SECTIONS.data,
+        CHARACTER_INFO_SECTIONS.data.title,
         getCharacterData(character)
       )}
       {getCharacterInfoSection(
         1,
-        INFO_SECTIONS.descr,
+        CHARACTER_INFO_SECTIONS.descr.title,
         getCharacterDescr(character)
       )}
       {getCharacterInfoSection(
         2,
-        INFO_SECTIONS.bio,
+        CHARACTER_INFO_SECTIONS.bio.title,
         getCharacterBio(character)
       )}
       {getCharacterInfoSection(
         3,
-        INFO_SECTIONS.transformations,
+        CHARACTER_INFO_SECTIONS.transformations.title,
         getCharacterTransformations(character)
       )}
     </article>

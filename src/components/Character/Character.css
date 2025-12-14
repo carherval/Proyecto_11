@@ -5,35 +5,17 @@
 }
 
 .personaje > img {
-  width: 35%;
+  width: var(--char-img-width);
+}
+
+.personaje > img.no-image {
+  width: var(--char-no-img-width);
+  background-color: transparent;
+  filter: invert(1);
 }
 
 .personaje > .info {
-  width: 65%;
-}
-
-.personaje h3 {
-  padding: 1rem;
-  padding-right: 4rem;
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--orange-color);
-  background-color: var(--yellow-color);
-  position: relative;
-  cursor: pointer;
-}
-
-.personaje h3::after {
-  content: '〉';
-  position: absolute;
-  top: 50%;
-  right: 2rem;
-  transform: translateY(-50%) rotate(90deg);
-  transition: transform 0.2s ease;
-}
-
-.personaje h3.opened::after {
-  transform: translateY(-50%) rotate(-90deg);
+  width: var(--info-width);
 }
 
 .personaje > .info > div {

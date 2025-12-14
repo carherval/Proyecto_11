@@ -3,12 +3,13 @@ import { DRAGON_BALL_SECTIONS, ERROR_MSG } from '../DragonBall'
 import { SagaCharactersFetch } from '../components/Fetch'
 import Error from './Error'
 
+// Página que muestra el listado de personajes de una saga
 const Saga = () => {
   const { sagaId } = useParams()
   const dbSection = DRAGON_BALL_SECTIONS[sagaId]
 
   return dbSection != null ? (
-    <section className='flex'>
+    <>
       <h2>
         {`${
           dbSection.id !== DRAGON_BALL_SECTIONS.dragons.id
@@ -17,7 +18,7 @@ const Saga = () => {
         }${dbSection.title}`}
       </h2>
       <SagaCharactersFetch sagaId={sagaId} />
-    </section>
+    </>
   ) : (
     <Error errorMsg={ERROR_MSG.saga} />
   )

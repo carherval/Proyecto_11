@@ -8,7 +8,7 @@
 }
 
 .cabecera-home > img {
-  width: 5%;
+  width: var(--header-img-width);
 }
 
 .cabecera {

@@ -16,7 +16,7 @@ const Header = ({ isHome }) => (
         <Link to=''>{PAGE_TITLE}</Link>
       </h1>
     )}
-    {!isHome ? <Menu isHome={isHome} /> : ''}
+    {!isHome && <Menu isHome={isHome} />}
   </header>
 )
 
