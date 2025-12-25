@@ -52,7 +52,7 @@ const getCharacterTransformations = (character) =>
   character.transformations[0].image !== '' ? (
     <ul className='flex transformations'>
       {character.transformations.map((transformation) => (
-        <li key={transformation.id}>
+        <li key={transformation.id ?? transformation.trans}>
           <img
             src={transformation.image}
             alt={getNotEmptyStr(transformation.title)}
