@@ -86,7 +86,11 @@ export const SagaCharactersFetch = ({ sagaId }) => {
   const [isError, setIsError] = useState(false)
 
   const getSagaCharacters = async () => {
+    const h2 = document.querySelector('h2')
+
     try {
+      h2?.classList.remove('oculto')
+
       setIsLoading(true)
       setIsError(false)
 
@@ -97,11 +101,7 @@ export const SagaCharactersFetch = ({ sagaId }) => {
       setSagaCharacters(sagaCharactersJson)
       setFilteredSagaCharacters(sagaCharactersJson)
     } catch (error) {
-      const h2 = document.querySelector('h2')
-
-      if (h2 != null) {
-        h2.outerHTML = ''
-      }
+      h2?.classList.add('oculto')
 
       setIsError(true)
     } finally {
