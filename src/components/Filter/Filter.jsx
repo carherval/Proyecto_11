@@ -218,7 +218,7 @@ const Filter = ({ getFilteredSagaCharacters }) => {
         type='text'
         name={id}
         autoComplete='on'
-        onChange={(event) => setStateFilterValues(event, id)}
+        onChange={(event) => setStateFilterValues(id, event.target.value)}
       />
     </>
   )
@@ -233,7 +233,9 @@ const Filter = ({ getFilteredSagaCharacters }) => {
           name={groupName}
           value={option.id}
           checked={option.id === filterValues[groupName]}
-          onChange={(event) => setStateFilterValues(event, groupName)}
+          onChange={(event) =>
+            setStateFilterValues(groupName, event.target.value)
+          }
         />
         <label
           tabIndex={0}
@@ -252,10 +254,10 @@ const Filter = ({ getFilteredSagaCharacters }) => {
     ))
 
   // Sólo se cambia el estado de la opción seleccionada que cambia en el filtro
-  const setStateFilterValues = (event, filterFieldId) =>
+  const setStateFilterValues = (filterFieldId, filterFieldValue) =>
     setFilterValues((filterValues) => ({
       ...filterValues,
-      [filterFieldId]: event.target.value
+      [filterFieldId]: filterFieldValue
     }))
 
   // Filtrado de los personajes de la saga al cambiar la opción seleccionada de un campo del filtro
