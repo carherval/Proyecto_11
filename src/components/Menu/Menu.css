@@ -23,6 +23,12 @@
   justify-content: space-evenly;
 }
 
+@media screen and (max-width: 425px) {
+  .menu > a {
+    font-size: 1.3rem;
+  }
+}
+
 .menu > a.active {
   color: var(--orange-color);
 }

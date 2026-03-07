@@ -3,13 +3,15 @@ import './style.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import DragonBall, { ERROR_MSG, PAGE_TITLE } from './DragonBall.jsx'
-import Character from './pages/Character.jsx'
-import Error from './pages/Error.jsx'
-import Home from './pages/Home.jsx'
-import Saga from './pages/Saga.jsx'
+import DragonBall from './DragonBall'
+import Character from './pages/Character'
+import Error from './pages/Error'
+import Home from './pages/Home'
+import Saga from './pages/Saga'
+import strings from './utils/strings'
 
-document.title = PAGE_TITLE
+document.title = strings.PAGE_TITLE
+document.querySelector('meta[name="author"]').content = strings.AUTHOR_FULLNAME
 
 ReactDOM.createRoot(document.querySelector('body')).render(
   <React.StrictMode>
@@ -19,7 +21,10 @@ ReactDOM.createRoot(document.querySelector('body')).render(
           <Route index element={<Home />} />
           <Route path=':sagaId' element={<Saga />} />
           <Route path=':sagaId/:characterId' element={<Character />} />
-          <Route path='*' element={<Error errorMsg={ERROR_MSG.page} />} />
+          <Route
+            path='*'
+            element={<Error errorMsg={strings.ERROR_MSG.page} />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -66,17 +66,11 @@
 
 @media screen and (max-width: 425px) {
   .filter .txt-fld {
-    width: 85%;
+    width: 80%;
   }
 
-  .filter form > fieldset:nth-child(2) .rd-btn + label,
-  .filter form > fieldset:nth-child(3) .rd-btn + label,
-  .filter form > fieldset:nth-child(5) .rd-btn + label {
+  .filter form > fieldset:nth-child(2) .rd-btn + label {
     width: 20%;
-  }
-
-  .filter form > fieldset:nth-child(4) .rd-btn + label {
-    width: 18%;
   }
 }
 
@@ -129,28 +123,20 @@
 
 @media screen and (min-width: 1025px) and (max-width: 2559px) {
   .filter form > fieldset:nth-child(1) {
-    width: 23%;
+    width: 45%;
   }
 
-  .filter form > fieldset:nth-child(2),
-  .filter form > fieldset:nth-child(3) {
-    width: 37%;
+  .filter form > fieldset:nth-child(2) {
+    width: 50%;
   }
 
-  .filter form > fieldset:nth-child(2) .rd-btn + label {
-    width: 20%;
+  .filter .txt-fld {
+    width: 80%;
   }
 
+  .filter form > fieldset:nth-child(2) .rd-btn + label,
   .filter form > fieldset:nth-child(3) .rd-btn + label {
-    width: 19%;
-  }
-
-  .filter form > fieldset:nth-child(4) .rd-btn + label {
-    width: 9%;
-  }
-
-  .filter form > fieldset:nth-child(5) .rd-btn + label {
-    width: 10.5%;
+    width: 20%;
   }
 }
 

@@ -12,13 +12,13 @@
 @media screen and (max-width: 425px) {
   :root {
     --header-img-width: 10%;
-    --menu-home-width: 50%;
+    --menu-home-width: 80%;
     --menu-width: 100%;
     --list-width: 100%;
     --char-img-width: 50%;
     --char-no-img-width: 20%;
-    --info-width: 85%;
-    font-size: 6px;
+    --info-width: 100%;
+    font-size: 8px;
   }
 }
 
@@ -200,6 +200,12 @@ a:hover {
 
 .personajes > li {
   width: 22.5%;
+}
+
+@media screen and (max-width: 425px) {
+  .personajes > li {
+    width: 45%;
+  }
 }
 
 .personajes a {

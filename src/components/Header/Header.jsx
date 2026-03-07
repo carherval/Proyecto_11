@@ -1,19 +1,19 @@
 import './Header.css'
 
 import { Link } from 'react-router-dom'
-import { PAGE_TITLE } from '../../DragonBall'
 import Menu from '../Menu/Menu'
+import strings from '../../utils/strings'
 
 const Header = ({ isHome }) => (
   <header className={`flex cabecera${isHome ? '-home' : ''}`}>
     {isHome ? (
       <>
-        <h1>{PAGE_TITLE}</h1>
-        <img src='/assets/images/bola.png' alt={PAGE_TITLE} />
+        <h1>{strings.PAGE_TITLE}</h1>
+        <img src='/assets/images/bola.png' alt={strings.PAGE_TITLE} />
       </>
     ) : (
       <h1 className='flex'>
-        <Link to=''>{PAGE_TITLE}</Link>
+        <Link to=''>{strings.PAGE_TITLE}</Link>
       </h1>
     )}
     {!isHome && <Menu isHome={isHome} />}
