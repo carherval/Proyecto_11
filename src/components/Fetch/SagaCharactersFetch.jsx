@@ -27,9 +27,7 @@ const SagaCharactersFetch = ({ sagaId }) => {
       setIsLoading(true)
       setIsError(false)
 
-      const sagaCharactersJson = await helpers.getData(
-        `https://dragonballapp.vercel.app/${sagaId}`
-      )
+      const sagaCharactersJson = await helpers.getData(strings.API_URL + sagaId)
 
       setSagaCharacters(sagaCharactersJson)
       setFilteredSagaCharacters(sagaCharactersJson)

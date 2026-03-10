@@ -23,7 +23,7 @@ const CharacterFetch = ({ sagaId, characterId }) => {
       setIsError(false)
 
       const characterJson = await helpers.getData(
-        `https://dragonballapp.vercel.app/${sagaId}/${characterId}`
+        `${strings.API_URL}${sagaId}/${characterId}`
       )
 
       // Si no se encuentra el personaje, se anula el "loader" para poder mostrar el mensaje de error
