@@ -45,9 +45,9 @@ const SagaCharactersFetch = ({ sagaId }) => {
     let filteredCharacters = sagaCharacters
 
     // Filtrado por el nombre del personaje
-    if (filterValues.name !== '') {
+    if (filterValues.name.trim() !== '') {
       filteredCharacters = filteredCharacters.filter((character) =>
-        new RegExp(filterValues.name, 'i').test(
+        new RegExp(filterValues.name.trim(), 'i').test(
           helpers.getNotEmptyStr(character.name, true)
         )
       )
